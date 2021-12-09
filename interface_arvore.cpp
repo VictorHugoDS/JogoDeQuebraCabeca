@@ -1,5 +1,7 @@
 #include <iostream>
 
+const int tamanhoPosibilidades = 4;
+
 struct no {   
     int valor;  
     no* pai;
@@ -14,7 +16,22 @@ no* iniciaArvore(int valorInicial){
   return elemento;
 }
 
-no* insereElementoFilho(no pai,int valorFilho){
+no* insereElementoFilho(no* pai,int valorFilho){
   no* elemento = new no();
-  
+  elemento->valor = valorFilho;
+  elemento->pai = pai;
+  elemento->filhos = NULL;
+
+  if(elemento->filhos == NULL){
+    pai->filhos = new no*[tamanhoPosibilidades];
+    pai->filhos[0] = elemento;
+  } else {
+    for(int i = 0; i < tamanhoPosibilidades; i){
+      if(pai->filhos[i]==NULL){
+        pai->filhos[i]=elemento;
+        break;
+      } 
+    }
+  }
+  return elemento;
 }

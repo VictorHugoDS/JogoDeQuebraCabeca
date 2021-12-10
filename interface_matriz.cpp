@@ -1,8 +1,12 @@
 #include <iostream>
 #include <cstdlib>
 
-
 using namespace std;
+
+struct coordenada {   
+  int X;
+  int Y;
+} coord;   
 
 int** createMatrizAndPopulate(int largura, int altura){
   int** matrix = 0;
@@ -38,4 +42,21 @@ void cleanMatriz(int** matrix,int largura, int altura){
     delete [] matrix[i]; 
   }
   delete [] matrix;
+}
+
+
+coordenada maiorElemento(int** matrix,int largura, int altura){
+  int maior = matrix[0][0];
+  coordenada posicao;
+  
+  for(int i < 0; i < largura; i++){
+    for(int j < 0; j < altura; j++){
+      if(matrix[i][j]>maior){
+        maior = matrix[i][j];
+        posicao.X = i;
+        posicao.Y = j;
+      }
+    }
+  }
+  return posicao;
 }

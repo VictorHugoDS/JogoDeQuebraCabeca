@@ -8,11 +8,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-  // int** x = createMatrizAndPopulate(2,2);
-  // printMatriz(x,2, 2);
-  // cleanMatriz(x,2, 2);
-  no* x = iniciaArvore(2);
-  printf("%d",x->valor);
-
+  int** matrizPrincipal = createMatrizAndPopulate(3,3);
+  coordenada maior = maiorElemento(matrizPrincipal,3,3);
 }
  

@@ -1,18 +1,21 @@
 #include <iostream>
+#include "interface_matriz.cpp"
 
 const int tamanhoPosibilidades = 4;
 
 struct no {   
-    int valor;  
+    objmatriz valor;  
+    int hashMatriz;
     int quantFilhos;
     int profundidade;
     no* pai;
     no** filhos;
 } arvore;   
 
-no* iniciaArvore(int valorInicial){
+no* iniciaArvore(objmatriz valorInicial){
   no* elemento = new no();
   elemento->valor = valorInicial;
+  elemento->hashMatriz = calculaHashMatriz(valorInicial);
   elemento->pai= NULL;
   elemento->filhos = NULL;
   elemento->quantFilhos = 0;
@@ -20,9 +23,10 @@ no* iniciaArvore(int valorInicial){
   return elemento;
 }
 
-no* insereElementoFilho(no* pai,int valorFilho){
+no* insereElementoFilho(no* pai,objmatriz valorFilho){
   no* elemento = new no();
   elemento->valor = valorFilho;
+  elemento->hashMatriz = calculaHashMatriz(valorFilho);
   elemento->pai = pai;
   elemento->filhos = NULL;
   elemento->quantFilhos = 0;
@@ -46,6 +50,7 @@ no* insereElementoFilho(no* pai,int valorFilho){
 
 bool limpaArvore(no* pai){
   if(pai->quantFilhos == 0){
+    cleanMatriz(pai->valor.matriz)
     delete pai;
     return true;
   }

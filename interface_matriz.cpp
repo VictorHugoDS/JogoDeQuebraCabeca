@@ -125,3 +125,69 @@ hashandobjmatriz cloneMatrizAndCalculateHash(objmatriz matrix){
 
   return retorno;
 }
+
+// 0 => esquerda
+// 1 => cima
+// 2 => direita
+// 3 => baixo
+
+bool podeMovimentar(int tipoMovimento, int i, int j, objmatriz matrix){
+  int aux;
+  switch (tipoMovimento)
+  {
+  case 0:
+    if(j==0){
+      return false;
+    }
+    aux = matrix.matriz[i][j];
+    matrix.matriz[i][j] = matrix.matriz[i][j-1];
+    matrix.matriz[i][j-1] = aux;
+
+    return true;
+    break;
+
+  case 1:
+    if(i==0){
+      return false;
+    }
+    aux = matrix.matriz[i][j];
+    matrix.matriz[i][j] = matrix.matriz[i-1][j];
+    matrix.matriz[i-1][j] = aux;
+    return true;
+    break;
+
+  case 2:
+    if(j==matrix.largura){
+      return false;
+    }
+    aux = matrix.matriz[i][j];
+    matrix.matriz[i][j] = matrix.matriz[i][j+1];
+    matrix.matriz[i][j+1] = aux;
+    return true;
+    break;
+
+  case 3:
+    if(i==matrix.altura){
+      return false;
+    }
+    aux = matrix.matriz[i][j];
+    matrix.matriz[i][j] = matrix.matriz[i+1][j];
+    matrix.matriz[i+1][j] = aux;
+    return true;
+    break;
+
+  default:
+     return false;
+  }
+} 
+
+
+bool movimentaNaMatriz(int tipoMovimento,objmatriz matrix){
+  for(int a = 0; a < matrix.largura; a++){
+    for(int b = 0; b < matrix.altura; b++){
+      if(matrix.matriz[a][b] == 0){
+        return podeMovimentar(tipoMovimento, a, b, matrix);
+      }
+    }
+  }
+}

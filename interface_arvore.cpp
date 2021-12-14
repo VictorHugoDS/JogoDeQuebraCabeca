@@ -50,11 +50,22 @@ no* insereElementoFilho(no* pai,objmatriz valorFilho){
 
 bool limpaArvore(no* pai){
   if(pai->quantFilhos == 0){
-    cleanMatriz(pai->valor.matriz)
+    cleanMatriz(pai->valor);
     delete pai;
     return true;
   }
   for(int i = 0; i < pai->quantFilhos; i++){
     return limpaArvore(pai->filhos[i]);
   }
+}
+
+bool matrizNovaNaArvore(no* nop){
+  no* aux;
+  aux = nop;
+  while (aux->pai != NULL){
+    if(aux->hashMatriz == nop->hashMatriz){
+      return false;
+    }
+  }
+  return true;
 }

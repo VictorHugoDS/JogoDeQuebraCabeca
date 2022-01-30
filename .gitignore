@@ -1,3 +1,7 @@
 .vscode/
 *.exe
 *.o
+
+# Binários gerados pelo G++ no Linux
+main
+larg

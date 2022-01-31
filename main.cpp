@@ -4,7 +4,9 @@
 
 //#include "interface_matriz.cpp"
 //#include "interface_arvore.cpp"
-#include "largura/busca_largura.h"
+//#include "largura/busca_largura.h"
+
+#include "tabuleiro.h"
 
 using namespace std;
 
@@ -13,6 +15,7 @@ int main(int argc, char const *argv[])
   // int** matrizPrincipal = createMatrizAndPopulate(3,3);
   // coordenada maior = maiorElemento(matrizPrincipal,3,3);
 
+  /*
   int quantVertices;
 
   printf("Insira o numero de vertices: ");
@@ -64,6 +67,12 @@ int main(int argc, char const *argv[])
   }
 
   buscaEmLargura(quantVertices, matrizAdj, 0);
+  */
+
+ int numeros[8] = {1,2,3,4,5,6,7,8};
+ Tabuleiro tabuleiro(5, numeros);
+
+ tabuleiro.printTabuleiro();
 
   return 0;
 }

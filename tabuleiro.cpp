@@ -37,6 +37,7 @@ Tabuleiro::Tabuleiro(int vazio, int numeros[8]) {
             // Essa posição deve ser preenchida com uma flag. Usarei -1.
             if (valoresPreenchidos == vazio) { 
                 tabuleiro[i][j] = -1;
+                valoresPreenchidos++;
             } else {
                 tabuleiro[i][j] = numeros[valoresPreenchidos];
                 valoresPreenchidos++;

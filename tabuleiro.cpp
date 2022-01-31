@@ -96,6 +96,14 @@ void Tabuleiro::right() {
  * 
  */
 void Tabuleiro::printTabuleiro() {
-    
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            std::cout << this->tabuleiro[i][j] << " ";
+        }
+
+        std::cout << "\n";
+    }
     
 }

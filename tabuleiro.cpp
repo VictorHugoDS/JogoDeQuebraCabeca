@@ -10,6 +10,10 @@
 #include "tabuleiro.h"
 #include <vector>
 
+/**
+ * @brief Construct a new Tabuleiro:: Tabuleiro object
+ * 
+ */
 Tabuleiro::Tabuleiro() {
     tabuleiro.resize(3);
     for (int i = 0; i < 3; i++)
@@ -19,20 +23,41 @@ Tabuleiro::Tabuleiro() {
     
 }
 
+/**
+ * @brief Destroy the Tabuleiro:: Tabuleiro object
+ * 
+ */
 Tabuleiro::~Tabuleiro() = default;
 
+
+/**
+ * @brief Movimenta o espaço vazio para cima.
+ * 
+ */
 void up() {
 
 }
 
+/**
+ * @brief Movimenta o espaço vazio para baixo.
+ * 
+ */
 void down() {
 
 }
 
+/**
+ * @brief Movimenta o espaço vazio para a esquerda.
+ * 
+ */
 void left() {
 
 }
 
+/**
+ * @brief Movimenta o espaço vazio para a direita.
+ * 
+ */
 void right() {
-    
+
 }

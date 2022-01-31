@@ -20,6 +20,8 @@ public:
     void down();
     void left();
     void right();
+
+    void printTabuleiro();
 };
 
 #endif

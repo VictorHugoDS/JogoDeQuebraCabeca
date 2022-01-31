@@ -7,8 +7,12 @@
  * 
  */
 
-#include "tabuleiro.h"
+// TODO: Getters e Setters do tabuleiro.
+
 #include <vector>
+#include <iostream>
+
+#include "tabuleiro.h"
 
 /**
  * @brief Construct a new Tabuleiro:: Tabuleiro object
@@ -50,12 +54,16 @@ Tabuleiro::Tabuleiro(int vazio, int numeros[8]) {
  */
 Tabuleiro::~Tabuleiro() = default;
 
+std::vector<std::vector<int>> getTabuleiro() {
+
+}
+
 
 /**
  * @brief Movimenta o espaço vazio para cima.
  * 
  */
-void up() {
+void Tabuleiro::up() {
 
 }
 
@@ -63,7 +71,7 @@ void up() {
  * @brief Movimenta o espaço vazio para baixo.
  * 
  */
-void down() {
+void Tabuleiro::down() {
 
 }
 
@@ -71,7 +79,7 @@ void down() {
  * @brief Movimenta o espaço vazio para a esquerda.
  * 
  */
-void left() {
+void Tabuleiro::left() {
 
 }
 
@@ -79,6 +87,15 @@ void left() {
  * @brief Movimenta o espaço vazio para a direita.
  * 
  */
-void right() {
+void Tabuleiro::right() {
 
+}
+
+/**
+ * @brief Desenha o tabuleiro na saída padrão.
+ * 
+ */
+void Tabuleiro::printTabuleiro() {
+    
+    
 }

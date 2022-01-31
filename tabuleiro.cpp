@@ -7,7 +7,6 @@
  * 
  */
 
-// TODO: Getters e Setters do tabuleiro.
 
 #include <vector>
 #include <iostream>

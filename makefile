@@ -1,6 +1,6 @@
 CXX = g++
 CPPFLAGS = -Wall -g
-OBJFILES = interface_matriz.o interface_arvore.o interface_busca_profundidade.o largura/busca_largura.o main.o
+OBJFILES = tabuleiro.o interface_matriz.o interface_arvore.o interface_busca_profundidade.o largura/busca_largura.o main.o
 
 # Arquivos da busca em largura
 LARGFILES = largura/busca_largura.o main.o #largura-files

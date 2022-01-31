@@ -10,12 +10,11 @@ class Tabuleiro
 private:
     std::vector<std::vector<int>> tabuleiro;
 public:
-    Tabuleiro();
+    Tabuleiro(int vazio, int numeros[8]);
     ~Tabuleiro();
 
-    /**
-     * @brief Funções que movimentam o espaço vazio do tabuleiro. Avança um estado do jogo.
-     * 
+    /*
+     Funções que movimentam o espaço vazio do tabuleiro. Avança um estado do jogo. 
      */
     void up();
     void down();

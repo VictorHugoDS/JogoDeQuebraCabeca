@@ -13,12 +13,33 @@
 /**
  * @brief Construct a new Tabuleiro:: Tabuleiro object
  * 
+ * @param vazio Posição que inicialmente ficará vazia no tabuleiro.
+ * Aceita os valores de 0 a 9, sendo 0 a posição top-left e 9 a posição bottom-right.
+ * @param numeros Números que serão inseridos. A ordem de inserção é da esquerda para a direita,
+ * cima para baixo.
  */
-Tabuleiro::Tabuleiro() {
+Tabuleiro::Tabuleiro(int vazio, int numeros[8]) {
     tabuleiro.resize(3);
     for (int i = 0; i < 3; i++)
     {
         tabuleiro[i].resize(3);
+    }
+
+    int valoresPreenchidos = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            // Essa posição deve ser preenchida com uma flag. Usarei -1.
+            if (valoresPreenchidos == vazio) { 
+                tabuleiro[i][j] = -1;
+            } else {
+                tabuleiro[i][j] = numeros[valoresPreenchidos];
+                valoresPreenchidos++;
+            }
+
+        }
+        
     }
     
 }

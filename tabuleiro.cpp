@@ -30,14 +30,15 @@ Tabuleiro::Tabuleiro(int vazio, int numeros[8]) {
     }
 
     int valoresPreenchidos = 0;
+    bool vazioJaAdicionado = false;
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
             // Essa posição deve ser preenchida com uma flag. Usarei -1.
-            if (valoresPreenchidos == vazio) { 
+            if ((valoresPreenchidos == vazio) && (!vazioJaAdicionado)) {
                 tabuleiro[i][j] = -1;
-                valoresPreenchidos++;
+                vazioJaAdicionado = true;
             } else {
                 tabuleiro[i][j] = numeros[valoresPreenchidos];
                 valoresPreenchidos++;

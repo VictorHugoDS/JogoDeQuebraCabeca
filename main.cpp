@@ -70,7 +70,7 @@ int main(int argc, char const *argv[])
   */
 
  int numeros[8] = {1,2,3,4,5,6,7,8};
- Tabuleiro tabuleiro(5, numeros);
+ Tabuleiro tabuleiro(4, numeros);
 
  tabuleiro.printTabuleiro();
 

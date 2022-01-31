@@ -102,7 +102,12 @@ void Tabuleiro::printTabuleiro() {
     {
         for (int j = 0; j < 3; j++)
         {
-            std::cout << this->tabuleiro[i][j] << " ";
+            if (this->tabuleiro[i][j] != -1) {
+                std::cout << this->tabuleiro[i][j] << " ";
+            } else {
+                std::cout << "." << " ";
+            }
+
         }
 
         std::cout << "\n";

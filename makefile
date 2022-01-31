@@ -7,6 +7,11 @@ LARGFILES = largura/busca_largura.o main.o #largura-files
 LARGTARGET = larg #largura-target
 LARGRM = clean-larg #largura-remove
 
+# Arquivos do tabuleiro
+TABFILES = tabuleiro.o main.o
+TABTARGET = tab
+TABRM = clean-tab
+
 TARGET = main
 
 all: $(TARGET)
@@ -22,3 +27,10 @@ $(LARGTARGET): $(LARGFILES)
 
 $(LARGRM):
 	rm $(LARGFILES) $(LARGTARGET)
+
+
+$(TABTARGET): $(TABFILES)
+	$(CXX) $(CPPFLAGS) -o $(TABTARGET) $(TABFILES)
+
+$(TABRM):
+	rm $(TABFILES) $(TABTARGET)

@@ -139,7 +139,17 @@ void Tabuleiro::down() {
  * 
  */
 void Tabuleiro::left() {
+    int col = this->calcularColunaDoVazio();
+    if (col > 0) {
+        int linha = this->calcularLinhaDoVazio();
 
+        // Pega o valor imediatamente ao lado do espaço vazio
+        this->tabuleiro[linha][col] = this->tabuleiro[linha][col - 1];
+        
+        // "Preenche" espaço ao lado com vazio
+        this->tabuleiro[linha][col - 1] = -1;
+        this->vazio = calcularValorDoVazio(linha, col - 1);
+    }
 }
 
 /**
@@ -147,7 +157,17 @@ void Tabuleiro::left() {
  * 
  */
 void Tabuleiro::right() {
+    int col = this->calcularColunaDoVazio();
+    if (col < 2) {
+        int linha = this->calcularLinhaDoVazio();
 
+        // Pega o valor imediatamente ao lado do espaço vazio
+        this->tabuleiro[linha][col] = this->tabuleiro[linha][col + 1];
+        
+        // "Preenche" espaço ao lado com vazio
+        this->tabuleiro[linha][col + 1] = -1;
+        this->vazio = calcularValorDoVazio(linha, col + 1);
+    }
 }
 
 /**

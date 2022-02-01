@@ -112,6 +112,7 @@ void Tabuleiro::up() {
         
         // "Preenche" espaço acima com vazio
         this->tabuleiro[linha - 1][col] = -1;
+        this->vazio = calcularValorDoVazio(linha - 1, col);
     }
 }
 
@@ -129,6 +130,7 @@ void Tabuleiro::down() {
         
         // "Preenche" espaço acima com vazio
         this->tabuleiro[linha + 1][col] = -1;
+        this->vazio = calcularValorDoVazio(linha + 1, col);
     }
 }
 

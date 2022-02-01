@@ -100,7 +100,16 @@ void Tabuleiro::up() {
  * 
  */
 void Tabuleiro::down() {
+    int linha = this->calcularLinhaDoVazio();
+    if (linha < 2) {
+        int col = this->calcularColunaDoVazio();
 
+        // Pega o valor imediatamente acima do espaço vazio
+        this->tabuleiro[linha][col] = this->tabuleiro[linha + 1][col];
+        
+        // "Preenche" espaço acima com vazio
+        this->tabuleiro[linha + 1][col] = -1;
+    }
 }
 
 /**

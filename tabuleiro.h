@@ -14,8 +14,8 @@ public:
     Tabuleiro(int vazio, int numeros[8]);
     ~Tabuleiro();
 
-    int calcularPosicaoXDoVazio();
-    int calcularPosicaoYDoVazio();
+    int calcularColunaDoVazio();
+    int calcularLinhaDoVazio();
     
     /*
      Funções que movimentam o espaço vazio do tabuleiro. Avança um estado do jogo. 

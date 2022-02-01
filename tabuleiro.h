@@ -9,6 +9,7 @@ class Tabuleiro
 {
 private:
     std::vector<std::vector<int>> tabuleiro;
+    int vazio;
 public:
     Tabuleiro(int vazio, int numeros[8]);
     ~Tabuleiro();

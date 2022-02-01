@@ -22,6 +22,7 @@
  * cima para baixo.
  */
 Tabuleiro::Tabuleiro(int vazio, int numeros[8]) {
+    vazio = vazio;
     tabuleiro.resize(3);
     for (int i = 0; i < 3; i++)
     {

@@ -61,20 +61,20 @@ std::vector<std::vector<int>> getTabuleiro() {
 }
 
 /**
- * @brief Encontra primeiro índice da posição vazia.
- * 
- * @return int 
- */
-int Tabuleiro::calcularPosicaoXDoVazio() {
-    return this->vazio % 3;
-}
-
-/**
  * @brief Encontra segundo índice da posição vazia.
  * 
  * @return int 
  */
-int Tabuleiro::calcularPosicaoYDoVazio() {
+int Tabuleiro::calcularColunaDoVazio() {
+    return this->vazio % 3;
+}
+
+/**
+ * @brief Encontra primeiro índice da posição vazia.
+ * 
+ * @return int 
+ */
+int Tabuleiro::calcularLinhaDoVazio() {
     return this->vazio / 3;
 }
 

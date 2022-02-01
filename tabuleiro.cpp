@@ -79,6 +79,26 @@ int Tabuleiro::calcularLinhaDoVazio() {
 }
 
 /**
+ * @brief Encontra a posição do vazio na forma de um único índice. Retorna um valor de 0 a 8.
+ * Tendo um tabuleiro de 9 peças, a expressão para transformar em índice único segue abaixo:
+ * 
+ * Índice = OpostoDaDivisãoPor3 + Resto
+ * Índice = Divisão * 3 + Resto
+ * Ou ainda:
+ * índice = linha * 3 + coluna
+ * 
+ * Caso não tenha ficado claro, as funções calcularLinhaDoVazio() e calcularColunaDoVazio()
+ * podem servir de referência. A função abaixo faz basicamente o oposto das outras duas.
+ * 
+ * @param linha tabuleiro[linha][]
+ * @param coluna tabuleiro[][coluna]
+ * @return int 
+ */
+int Tabuleiro::calcularValorDoVazio(int linha, int coluna) {
+    return linha * 3 + coluna;
+}
+
+/**
  * @brief Movimenta o espaço vazio para cima.
  * 
  */

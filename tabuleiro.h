@@ -16,6 +16,7 @@ public:
 
     int calcularColunaDoVazio();
     int calcularLinhaDoVazio();
+    int calcularValorDoVazio(int linha, int coluna);
     
     /*
      Funções que movimentam o espaço vazio do tabuleiro. Avança um estado do jogo. 

@@ -74,22 +74,14 @@ int main(int argc, char const *argv[])
 
  tabuleiro.printTabuleiro();
 
- tabuleiro.up();
-
-  std::cout <<"==========\n";
-
-  tabuleiro.up();
-
+ std::cout << "=======================\n";
+ tabuleiro.left();
  tabuleiro.printTabuleiro();
- 
-  std::cout <<"==========\n";
-
-  tabuleiro.down();
-  tabuleiro.down();
-  tabuleiro.down();
-  tabuleiro.down();
-  tabuleiro.down();
- 
+ std::cout << "=======================\n";
+ tabuleiro.right();
+ tabuleiro.printTabuleiro();
+ std::cout << "=======================\n";
+ tabuleiro.right();
  tabuleiro.printTabuleiro();
  
   return 0;

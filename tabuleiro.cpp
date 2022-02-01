@@ -22,7 +22,7 @@
  * cima para baixo.
  */
 Tabuleiro::Tabuleiro(int vazio, int numeros[8]) {
-    vazio = vazio;
+    this->vazio = vazio;
     tabuleiro.resize(3);
     for (int i = 0; i < 3; i++)
     {
@@ -83,9 +83,9 @@ int Tabuleiro::calcularLinhaDoVazio() {
  * 
  */
 void Tabuleiro::up() {
-    int linha = calcularLinhaDoVazio();
+    int linha = this->calcularLinhaDoVazio();
     if (linha > 0) {
-        int col = calcularColunaDoVazio();
+        int col = this->calcularColunaDoVazio();
 
         // Pega o valor imediatamente acima do espaço vazio
         this->tabuleiro[linha][col] = this->tabuleiro[linha - 1][col];

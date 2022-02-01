@@ -83,7 +83,16 @@ int Tabuleiro::calcularLinhaDoVazio() {
  * 
  */
 void Tabuleiro::up() {
+    int linha = calcularLinhaDoVazio();
+    if (linha > 0) {
+        int col = calcularColunaDoVazio();
 
+        // Pega o valor imediatamente acima do espaço vazio
+        tabuleiro[linha][col] = tabuleiro[linha - 1][col];
+        
+        // "Preenche" espaço acima com vazio
+        tabuleiro[linha - 1][col] = -1;
+    }
 }
 
 /**

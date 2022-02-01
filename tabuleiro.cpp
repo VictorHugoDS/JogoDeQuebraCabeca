@@ -88,10 +88,10 @@ void Tabuleiro::up() {
         int col = calcularColunaDoVazio();
 
         // Pega o valor imediatamente acima do espaço vazio
-        tabuleiro[linha][col] = tabuleiro[linha - 1][col];
+        this->tabuleiro[linha][col] = this->tabuleiro[linha - 1][col];
         
         // "Preenche" espaço acima com vazio
-        tabuleiro[linha - 1][col] = -1;
+        this->tabuleiro[linha - 1][col] = -1;
     }
 }
 

@@ -19,6 +19,15 @@ Tabuleiro Arvore::getRaiz() {
 Arvore* Arvore::getFilho1() {
     return this->filho_1;
 }
+Arvore* Arvore::getFilho1() {
+    return this->filho_2;
+}
+Arvore* Arvore::getFilho1() {
+    return this->filho_3;
+}
+Arvore* Arvore::getFilho1() {
+    return this->filho_4;
+}
 
 void Arvore::adicionarFilho(Tabuleiro tabuleiro) {
     if (this->filho_1 == nullptr) {

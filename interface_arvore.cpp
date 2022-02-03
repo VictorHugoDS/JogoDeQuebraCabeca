@@ -12,6 +12,12 @@ struct no {
     no** filhos;
 } arvore;   
 
+/**
+ * @brief Inicia a árvore
+ * 
+ * @param valorInicial matriz inicial da árvore
+ * @return retorna um nó com o hash da matriz, ponteiro para seus filhos, ponteiro para seu pai e qual profundidade ela se encontra
+**/
 no* iniciaArvore(objmatriz valorInicial){
   no* elemento = new no();
   elemento->valor = valorInicial;
@@ -22,7 +28,13 @@ no* iniciaArvore(objmatriz valorInicial){
   elemento->profundidade = 0;
   return elemento;
 }
-
+/**
+ * @brief Insere um elemento filho na árvore
+ * 
+ * @param pai nó pai do nó a ser inserido
+ * @param valorFilho Matriz do filho
+ * @return retorna um nó com o hash da matriz filho, ponteiro para seus filhos, ponteiro para  seu pai e qual profundidade ela se encontra
+**/
 no* insereElementoFilho(no* pai,objmatriz valorFilho){
   no* elemento = new no();
   elemento->valor = valorFilho;
@@ -47,7 +59,12 @@ no* insereElementoFilho(no* pai,objmatriz valorFilho){
 
   return elemento;
 }
-
+/**
+ * @brief Desaloca memória da árvore inteira
+ * 
+ * @param pai nó raiz da árovre a ser desalocada
+ * @return retorna se foi possível desalocar a árvore
+**/
 bool limpaArvore(no* pai){
   if(pai->quantFilhos == 0){
     cleanMatriz(pai->valor);
@@ -59,7 +76,12 @@ bool limpaArvore(no* pai){
   }
   return false;
 }
-
+/**
+ * @brief Verifica se uma matriz é nova naquele ramo
+ * 
+ * @param nop nó que possui a matriz a ser verificada
+ * @return retorna true se ele é novo no ramo, ou falso caso o contrário
+**/
 bool matrizNovaNaArvore(no* nop){
   no* aux;
   int hash = nop->hashMatriz;

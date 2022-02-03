@@ -15,6 +15,13 @@ struct hashandobjmatriz {
     int hash;
 } valuehash;  
 
+/**
+ * @brief Cria a matriz,coloca em formato de objmatriz e a popula, para que ela carregue consigo sua largura e altura
+ * 
+ * @param largura largura da matriz
+ * @param altura altura da matriz
+ * @return objmatriz populado 
+**/
 objmatriz createMatrizAndPopulate(int largura, int altura){
   int** matrix = 0;
   matrix = new int*[largura];
@@ -23,7 +30,7 @@ objmatriz createMatrizAndPopulate(int largura, int altura){
     matrix[a] = new int[altura];
     
     for(int b = 0; b < altura; b++){
-      printf("\n Digite o elemento da posicao %d %d: ",a,b);
+      printf("\n Digite o elemento da posicao [%d] [%d]: ",a,b);
       cin >> matrix[a][b];
     }
   }
@@ -36,6 +43,53 @@ objmatriz createMatrizAndPopulate(int largura, int altura){
   return retorno;
 }
 
+/**
+ * @brief Verifica se dada a primeira matriz, é possível chegar na segunda
+ * 
+ * @param posicao_final matriz 1
+ * @param posicao_inicial matriz 2
+ * @return true caso seja possível da primeira chegar na segunda, ou false caso constrário
+**/
+bool possivelChegar(objmatriz posicao_final,objmatriz posicao_inicial){
+  int a = posicao_inicial.largura;
+  int b = posicao_inicial.altura;
+  bool mesmos_elementos = true;
+  for (int i = 0; i < a; i++)
+  {
+    for (int j = 0; j < b; j++)
+    {
+      bool encontrado = false;
+      int valor = posicao_inicial.matriz[i][j];
+      for (int m = 0; m < a; m++)
+      {
+        for (int n = 0; n < b; n++)
+        {
+          if(posicao_final.matriz[m][n]==valor){
+            encontrado = true;
+            m=2;
+            n=2;
+          }
+        }
+        
+      }
+      if (!encontrado)
+      {
+        mesmos_elementos = false;
+        i = 2;
+        j = 2;
+      }
+      
+    }
+    
+  }
+  return mesmos_elementos;
+}
+
+/**
+ * @brief Imprime a matriz
+ * 
+ * @param matrix matriz a ser imprimida
+**/
 void printMatriz(objmatriz matrix){
   //limpa o terminal
   // cout << "\033[H\033[2J\033[3J" ;
@@ -49,7 +103,11 @@ void printMatriz(objmatriz matrix){
   }
 }
 
-
+/**
+ * @brief Desaloca a memória da matriz
+ * 
+ * @param matrix matriz a ser desalocada
+**/
 void cleanMatriz(objmatriz matrix){
   for(int i; i < matrix.largura; i++){
     delete [] matrix.matriz[i]; 
@@ -57,6 +115,12 @@ void cleanMatriz(objmatriz matrix){
   delete [] matrix.matriz;
 }
 
+/**
+ * @brief Clona uma matriz 
+ * 
+ * @param matriz_base matriz a ser clonada
+ * @return retorna uma nova instância de objmatriz, clone da passada por parâmetro
+**/
 objmatriz cloneMatriz(objmatriz matriz_base){
   int** matriz_saida = 0;
   matriz_saida = new int*[matriz_base.largura];
@@ -75,6 +139,12 @@ objmatriz cloneMatriz(objmatriz matriz_base){
   return retorno;
 }
 
+/**
+ * @brief Calcula o hash da matriz 
+ * 
+ * @param matrix matriz a ser calculado o hash
+ * @return retorna o valor do hash
+**/
 int calculaHashMatriz(objmatriz matrix){
   int somatorio = 0;
   for(int a = 0; a < matrix.largura; a++){    
@@ -85,56 +155,32 @@ int calculaHashMatriz(objmatriz matrix){
       string s2 = to_string(b);
       string s = s1 + s2;
       int c = stoi(s);
-
       somatorio = somatorio + c * matrix.matriz[a][b];
     }
   }
   return somatorio;
 }
 
-hashandobjmatriz cloneMatrizAndCalculateHash(objmatriz matrix){
-  int** matriz_saida = 0;
-  int somatorio = 0;
-  matriz_saida = new int*[matrix.largura];
-
-  for(int a = 0; a < matrix.largura; a++){
-    matriz_saida[a] = new int[matrix.altura];
-    
-    for(int b = 0; b < matrix.altura; b++){
-      matriz_saida[a][b] = matrix.matriz[a][b];
-
-      //concatena 'a' e 'b' para poder fazer o hash
-      string s1 = to_string(a);
-      string s2 = to_string(b);
-      string s = s1 + s2;
-      int c = stoi(s);
-
-      somatorio = somatorio + c * matrix.matriz[a][b];
-
-    }
-  }
-
-  objmatriz prod_intermediario;
-  prod_intermediario.altura = matrix.altura;
-  prod_intermediario.largura = matrix.largura;
-  prod_intermediario.matriz = matriz_saida;
-
-  hashandobjmatriz retorno;
-  retorno.valor = prod_intermediario;
-  retorno.hash = somatorio;
-
-  return retorno;
-}
 
 // 0 => esquerda
 // 1 => cima
 // 2 => direita
 // 3 => baixo
 
+/**
+ * @brief Verifica se é possível realizar o movimento do zero dentro de uma matriz, se sim realiza esse movimento
+ * 
+ * @param tipoMovimento o movimento que deseja se fazer 0 => esquerda 1 => cima 2 => direita 3 => baixo
+ * @param i largura da matriz
+ * @param j altura da matriz
+ * @param matrix matriz a ser movimentada
+ * @return retorna verdadeiro caso o movimento foi realizado, ou falso caso não fosse possível realizar o movimento
+**/
 bool podeMovimentar(int tipoMovimento, int i, int j, objmatriz matrix){
   int aux;
   switch (tipoMovimento)
   {
+    
   case 0:
     if(j==0){
       return false;
@@ -157,7 +203,7 @@ bool podeMovimentar(int tipoMovimento, int i, int j, objmatriz matrix){
     break;
 
   case 2:
-    if(j==matrix.largura){
+    if(j==matrix.largura-1){
       return false;
     }
     aux = matrix.matriz[i][j];
@@ -167,7 +213,7 @@ bool podeMovimentar(int tipoMovimento, int i, int j, objmatriz matrix){
     break;
 
   case 3:
-    if(i==matrix.altura){
+    if(i==matrix.altura-1){
       return false;
     }
     aux = matrix.matriz[i][j];
@@ -181,7 +227,13 @@ bool podeMovimentar(int tipoMovimento, int i, int j, objmatriz matrix){
   }
 } 
 
-
+/**
+ * @brief Tenta movimentar do 0 na matriz
+ * 
+ * @param tipoMovimento o movimento que deseja se fazer 0 => esquerda 1 => cima 2 => direita 3 => baixo
+ * @param matrix matriz a ser movimentada
+ * @return retorna verdadeiro caso o movimento foi realizado, ou falso caso não fosse possível realizar o movimento
+**/
 bool movimentaNaMatriz(int tipoMovimento,objmatriz matrix){
   for(int a = 0; a < matrix.largura; a++){
     for(int b = 0; b < matrix.altura; b++){

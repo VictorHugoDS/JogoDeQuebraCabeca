@@ -100,15 +100,7 @@ void liberarFila(Fila* fila)
  */
 void buscaEmLargura(int quantVertices, std::vector<std::vector<int>> matrizAdj, int verticeInicial)
 {
-    // Não deve ser assim a melhor forma de se inicializar uma matriz em C++, mas foi a única
-    // forma que deu certo
-    matrizAdj.resize(quantVertices);
-    for (int i = 0; i < quantVertices; i++)
-    {
-        matrizAdj[i].resize(quantVertices);
-    }
     
-
     int visitado[quantVertices];
 
     for (int vertice = 0; vertice < quantVertices; vertice++)

@@ -15,6 +15,8 @@ public:
     Tabuleiro();
     ~Tabuleiro();
 
+    std::vector<std::vector<int>> getTabuleiro();
+
     int calcularColunaDoVazio();
     int calcularLinhaDoVazio();
     int calcularValorDoVazio(int linha, int coluna);

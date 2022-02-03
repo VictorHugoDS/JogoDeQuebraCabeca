@@ -58,8 +58,8 @@ Tabuleiro::Tabuleiro() = default;
  */
 Tabuleiro::~Tabuleiro() = default;
 
-std::vector<std::vector<int>> getTabuleiro() {
-
+std::vector<std::vector<int>> Tabuleiro::getTabuleiro() {
+    return this->tabuleiro;
 }
 
 /**

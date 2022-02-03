@@ -100,22 +100,48 @@ int Tabuleiro::calcularValorDoVazio(int linha, int coluna) {
     return linha * 3 + coluna;
 }
 
+int* Tabuleiro::calcularArrayDeNumeros() {
+    int *numeros = new int[8];
+    
+    int contador = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (this->tabuleiro[i][j] != -1) {
+                numeros[contador] = this->tabuleiro[i][j];
+                contador++;
+            }
+        }
+        
+    }
+
+    return numeros;
+    
+}
+
 /**
  * @brief Movimenta o espaço vazio para cima.
  * 
  */
-void Tabuleiro::up() {
+Tabuleiro Tabuleiro::up() {
+    Tabuleiro novo(this->vazio, this->calcularArrayDeNumeros());
+
     int linha = this->calcularLinhaDoVazio();
     if (linha > 0) {
         int col = this->calcularColunaDoVazio();
 
+
         // Pega o valor imediatamente acima do espaço vazio
-        this->tabuleiro[linha][col] = this->tabuleiro[linha - 1][col];
+        novo.tabuleiro[linha][col] = novo.tabuleiro[linha - 1][col];
         
         // "Preenche" espaço acima com vazio
-        this->tabuleiro[linha - 1][col] = -1;
-        this->vazio = calcularValorDoVazio(linha - 1, col);
+        novo.tabuleiro[linha - 1][col] = -1;
+        novo.vazio = calcularValorDoVazio(linha - 1, col);
+
     }
+
+    return novo;
 }
 
 /**

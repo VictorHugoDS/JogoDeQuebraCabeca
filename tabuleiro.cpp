@@ -50,6 +50,8 @@ Tabuleiro::Tabuleiro(int vazio, int numeros[8]) {
     
 }
 
+Tabuleiro::Tabuleiro() = default;
+
 /**
  * @brief Destroy the Tabuleiro:: Tabuleiro object
  * 

@@ -12,6 +12,7 @@ private:
     int vazio;
 public:
     Tabuleiro(int vazio, int numeros[8]);
+    Tabuleiro();
     ~Tabuleiro();
 
     int calcularColunaDoVazio();

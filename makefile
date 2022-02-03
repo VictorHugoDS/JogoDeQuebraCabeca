@@ -12,6 +12,11 @@ TABFILES = tabuleiro.o main.o
 TABTARGET = tab
 TABRM = clean-tab
 
+# Tabuleiro + busca em largura
+TABLFILES = tabuleiro.o largura/busca_largura.o main.o
+TABLTARGET = tabl
+TABLRM = clean-tabl
+
 TARGET = main
 
 all: $(TARGET)
@@ -34,3 +39,9 @@ $(TABTARGET): $(TABFILES)
 
 $(TABRM):
 	rm $(TABFILES) $(TABTARGET)
+
+$(TABLTARGET): $(TABLFILES)
+	$(CXX) $(CPPFLAGS) -o $(TABLTARGET) $(TABLFILES)
+
+$(TABLRM):
+	rm $(TABLFILES) $(TABLTARGET)

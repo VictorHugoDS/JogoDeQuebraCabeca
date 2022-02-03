@@ -57,15 +57,19 @@ bool limpaArvore(no* pai){
   for(int i = 0; i < pai->quantFilhos; i++){
     return limpaArvore(pai->filhos[i]);
   }
+  return false;
 }
 
 bool matrizNovaNaArvore(no* nop){
   no* aux;
-  aux = nop;
-  while (aux->pai != NULL){
-    if(aux->hashMatriz == nop->hashMatriz){
+  int hash = nop->hashMatriz;
+  aux= nop->pai;
+  while (aux!=NULL)
+  {
+    if(aux->hashMatriz==hash){
       return false;
     }
+    aux= aux->pai;
   }
   return true;
 }

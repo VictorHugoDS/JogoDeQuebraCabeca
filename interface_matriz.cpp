@@ -38,7 +38,7 @@ objmatriz createMatrizAndPopulate(int largura, int altura){
 
 void printMatriz(objmatriz matrix){
   //limpa o terminal
-  cout << "\033[H\033[2J\033[3J" ;
+  // cout << "\033[H\033[2J\033[3J" ;
 
   for(int i = 0; i < matrix.largura; i++){
     printf("\n| ");
@@ -95,13 +95,13 @@ int calculaHashMatriz(objmatriz matrix){
 hashandobjmatriz cloneMatrizAndCalculateHash(objmatriz matrix){
   int** matriz_saida = 0;
   int somatorio = 0;
-  matriz_saida = new int*[matriz_base.largura];
+  matriz_saida = new int*[matrix.largura];
 
-  for(int a = 0; a < matriz_base.largura; a++){
-    matriz_saida[a] = new int[matriz_base.altura];
+  for(int a = 0; a < matrix.largura; a++){
+    matriz_saida[a] = new int[matrix.altura];
     
-    for(int b = 0; b < matriz_base.altura; b++){
-      matriz_saida[a][b] = matriz_base.matriz[a][b];
+    for(int b = 0; b < matrix.altura; b++){
+      matriz_saida[a][b] = matrix.matriz[a][b];
 
       //concatena 'a' e 'b' para poder fazer o hash
       string s1 = to_string(a);
@@ -109,14 +109,14 @@ hashandobjmatriz cloneMatrizAndCalculateHash(objmatriz matrix){
       string s = s1 + s2;
       int c = stoi(s);
 
-      somatorio = somatorio + c * matriz_base.matriz[a][b]
+      somatorio = somatorio + c * matrix.matriz[a][b];
 
     }
   }
 
   objmatriz prod_intermediario;
-  prod_intermediario.altura = matriz_base.altura;
-  prod_intermediario.largura = matriz_base.largura;
+  prod_intermediario.altura = matrix.altura;
+  prod_intermediario.largura = matrix.largura;
   prod_intermediario.matriz = matriz_saida;
 
   hashandobjmatriz retorno;
@@ -190,4 +190,5 @@ bool movimentaNaMatriz(int tipoMovimento,objmatriz matrix){
       }
     }
   }
+  return false;
 }

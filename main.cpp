@@ -6,7 +6,8 @@
 //#include "interface_arvore.cpp"
 #include "largura/busca_largura.h"
 
-//#include "tabuleiro.h"
+#include "tabuleiro.h"
+#include "arvore.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ int main(int argc, char const *argv[])
   // int** matrizPrincipal = createMatrizAndPopulate(3,3);
   // coordenada maior = maiorElemento(matrizPrincipal,3,3);
 
-  
+  /*
   int quantVertices;
 
   printf("Insira o numero de vertices: ");
@@ -67,7 +68,7 @@ int main(int argc, char const *argv[])
   }
 
   buscaEmLargura(quantVertices, matrizAdj, 0);
-  
+  */
 
 /*
  int numeros[8] = {1,2,3,4,5,6,7,8};
@@ -86,6 +87,21 @@ int main(int argc, char const *argv[])
  tabuleiro.printTabuleiro();
 
  */
+
+  int numerosTabuleiro[8] = {7, 2, 4, 5, 6, 8, 3, 1};
+  Tabuleiro tabuleiro(4, numerosTabuleiro);
+
+  //tabuleiro.printTabuleiro();
+
+  int numerosObjetivo[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+  Tabuleiro objetivo(0, numerosObjetivo);
+
+  //objetivo.printTabuleiro();
+
+  Arvore tree(tabuleiro);
+  tree.adicionarFilho(tabuleiro.up());
+
+  
  
   return 0;
 }

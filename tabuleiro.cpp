@@ -184,6 +184,8 @@ Tabuleiro Tabuleiro::left() {
         novo.tabuleiro[linha][col - 1] = -1;
         novo.vazio = calcularValorDoVazio(linha, col - 1);
     }
+
+    return novo;
 }
 
 /**

@@ -12,8 +12,8 @@ TABFILES = tabuleiro.o main.o
 TABTARGET = tab
 TABRM = clean-tab
 
-# Tabuleiro + busca em largura
-TABLFILES = tabuleiro.o largura/busca_largura.o main.o
+# Tabuleiro + Árvore + busca em largura
+TABLFILES = tabuleiro.o arvore.o largura/busca_largura.o main.o
 TABLTARGET = tabl
 TABLRM = clean-tabl
 

@@ -24,9 +24,9 @@ public:
      Funções que movimentam o espaço vazio do tabuleiro. Avança um estado do jogo. 
      */
     Tabuleiro up();
-    void down();
-    void left();
-    void right();
+    Tabuleiro down();
+    Tabuleiro left();
+    Tabuleiro right();
 
     void printTabuleiro();
 };

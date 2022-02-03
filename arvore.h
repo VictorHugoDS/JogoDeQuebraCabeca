@@ -16,6 +16,12 @@ public:
     Arvore();
     ~Arvore();
 
+    Tabuleiro getRaiz();
+    Arvore* getFilho1();
+    Arvore* getFilho2();
+    Arvore* getFilho3();
+    Arvore* getFilho4();
+
     void adicionarFilho(Tabuleiro tabuleiro);
 
 };

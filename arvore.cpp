@@ -12,6 +12,23 @@ Arvore::Arvore() = default;
 
 Arvore::~Arvore() = default;
 
+Tabuleiro Arvore::getRaiz() {
+    return this->raiz;
+}
+
+Arvore* Arvore::getFilho1() {
+    return this->filho_1;
+}
+Arvore* Arvore::getFilho2() {
+    return this->filho_2;
+}
+Arvore* Arvore::getFilho3() {
+    return this->filho_3;
+}
+Arvore* Arvore::getFilho4() {
+    return this->filho_4;
+}
+
 void Arvore::adicionarFilho(Tabuleiro tabuleiro) {
     if (this->filho_1 == nullptr) {
         this->filho_1 = new Arvore(tabuleiro);

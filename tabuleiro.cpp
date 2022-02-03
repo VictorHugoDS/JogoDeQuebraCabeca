@@ -148,54 +148,66 @@ Tabuleiro Tabuleiro::up() {
  * @brief Movimenta o espaço vazio para baixo.
  * 
  */
-void Tabuleiro::down() {
+Tabuleiro Tabuleiro::down() {
+    Tabuleiro novo(this->vazio, this->calcularArrayDeNumeros());
+
     int linha = this->calcularLinhaDoVazio();
     if (linha < 2) {
         int col = this->calcularColunaDoVazio();
 
         // Pega o valor imediatamente abaixo do espaço vazio
-        this->tabuleiro[linha][col] = this->tabuleiro[linha + 1][col];
+        novo.tabuleiro[linha][col] = novo.tabuleiro[linha + 1][col];
         
         // "Preenche" espaço abaixo com vazio
-        this->tabuleiro[linha + 1][col] = -1;
-        this->vazio = calcularValorDoVazio(linha + 1, col);
+        novo.tabuleiro[linha + 1][col] = -1;
+        novo.vazio = calcularValorDoVazio(linha + 1, col);
     }
+
+    return novo;
 }
 
 /**
  * @brief Movimenta o espaço vazio para a esquerda.
  * 
  */
-void Tabuleiro::left() {
+Tabuleiro Tabuleiro::left() {
+    Tabuleiro novo(this->vazio, this->calcularArrayDeNumeros());
+
     int col = this->calcularColunaDoVazio();
     if (col > 0) {
         int linha = this->calcularLinhaDoVazio();
 
         // Pega o valor imediatamente ao lado do espaço vazio
-        this->tabuleiro[linha][col] = this->tabuleiro[linha][col - 1];
+        novo.tabuleiro[linha][col] = novo.tabuleiro[linha][col - 1];
         
         // "Preenche" espaço ao lado com vazio
-        this->tabuleiro[linha][col - 1] = -1;
-        this->vazio = calcularValorDoVazio(linha, col - 1);
+        novo.tabuleiro[linha][col - 1] = -1;
+        novo.vazio = calcularValorDoVazio(linha, col - 1);
     }
+
+    return novo;
 }
 
 /**
  * @brief Movimenta o espaço vazio para a direita.
  * 
  */
-void Tabuleiro::right() {
+Tabuleiro Tabuleiro::right() {
+    Tabuleiro novo(this->vazio, this->calcularArrayDeNumeros());
+
     int col = this->calcularColunaDoVazio();
     if (col < 2) {
         int linha = this->calcularLinhaDoVazio();
 
         // Pega o valor imediatamente ao lado do espaço vazio
-        this->tabuleiro[linha][col] = this->tabuleiro[linha][col + 1];
+        novo.tabuleiro[linha][col] = novo.tabuleiro[linha][col + 1];
         
         // "Preenche" espaço ao lado com vazio
-        this->tabuleiro[linha][col + 1] = -1;
-        this->vazio = calcularValorDoVazio(linha, col + 1);
+        novo.tabuleiro[linha][col + 1] = -1;
+        novo.vazio = calcularValorDoVazio(linha, col + 1);
     }
+
+    return novo;
 }
 
 /**

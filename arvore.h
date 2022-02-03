@@ -16,6 +16,7 @@ public:
     Arvore();
     ~Arvore();
 
+    Tabuleiro getRaiz();
     Arvore* getFilho1();
 
     void adicionarFilho(Tabuleiro tabuleiro);

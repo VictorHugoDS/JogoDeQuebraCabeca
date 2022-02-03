@@ -12,6 +12,10 @@ Arvore::Arvore() = default;
 
 Arvore::~Arvore() = default;
 
+Tabuleiro Arvore::getRaiz() {
+    return this->raiz;
+}
+
 Arvore* Arvore::getFilho1() {
     return this->filho_1;
 }

@@ -19,13 +19,13 @@ Tabuleiro Arvore::getRaiz() {
 Arvore* Arvore::getFilho1() {
     return this->filho_1;
 }
-Arvore* Arvore::getFilho1() {
+Arvore* Arvore::getFilho2() {
     return this->filho_2;
 }
-Arvore* Arvore::getFilho1() {
+Arvore* Arvore::getFilho3() {
     return this->filho_3;
 }
-Arvore* Arvore::getFilho1() {
+Arvore* Arvore::getFilho4() {
     return this->filho_4;
 }
 

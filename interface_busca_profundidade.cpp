@@ -2,11 +2,7 @@
 #include "interface_arvore.cpp"
 
 
-no* buscaEmProfundidadeRecusiva(no* no_Atual,int hash_objetivo,int contador){
-  if (contador % 100 == 0)
-  {
-    printf("%d",hash_objetivo);
-  }
+no* buscaEmProfundidadeRecusiva(no* no_Atual,int hash_objetivo){
   if(no_Atual->hashMatriz == hash_objetivo){
     return no_Atual;
   }
@@ -20,8 +16,7 @@ no* buscaEmProfundidadeRecusiva(no* no_Atual,int hash_objetivo,int contador){
       // printMatriz(no_Atual->valor);
       
       if(novo_na_arvore){
-        contador = contador +1;
-        no* resposta = buscaEmProfundidadeRecusiva(no_filho, hash_objetivo,contador);
+        no* resposta = buscaEmProfundidadeRecusiva(no_filho, hash_objetivo);
         if(resposta!=NULL){
           return resposta;
         }
@@ -38,10 +33,16 @@ no* buscaEmProfundidadeRecusiva(no* no_Atual,int hash_objetivo,int contador){
 
 void buscaEmProfundidade (objmatriz matriz_inicial, int hash_final){
   no* raiz = iniciaArvore(matriz_inicial);
-  printf("hash da posicao a ser encontrada:%d , hash da posicao inicial:%d",raiz->hashMatriz,hash_final);
+  // printf("hash da posicao a ser encontrada:%d , hash da posicao inicial:%d",raiz->hashMatriz,hash_final);
   no* no_atual = raiz;
-  no* resultado = buscaEmProfundidadeRecusiva(no_atual,hash_final,1);
-  printMatriz(resultado->valor);  
-  printf("hash final: %d, hash da matriz: %d\n\n",hash_final,resultado->hashMatriz);
+  no* resultado = buscaEmProfundidadeRecusiva(no_atual,hash_final);
+  // printf("hash final: %d, hash da matriz: %d\n\n",hash_final,resultado->hashMatriz);
+  // 
+  printf("\nA solucao encontrada foi a matriz:\n");
+  printMatriz(resultado->valor);
+  printf("\n O custo da solucao foi: %d\n",resultado->profundidade);
+ 
+  printf("\n O custo da busca foi: %d", exploraArvore(raiz)); //colocar a função de calcular o custo da busca
+
   limpaArvore(raiz);
 }

@@ -17,14 +17,14 @@ void realiza_busca_profundidade();
 int main(int argc, char const *argv[])
 {
 
-  int numerosTabuleiro[8] = {7, 2, 4, 5, 6, 8, 3, 1};
-  Tabuleiro tabuleiro(4, numerosTabuleiro);
+  int numerosTabuleiro[8] = {2, 3, 1, 4, 5, 8, 7, 6};
+  Tabuleiro tabuleiro(0, numerosTabuleiro);
 
-  int numerosObjetivo[8] = {1, 2, 3, 4, 5, 6, 7, 8};
-  Tabuleiro objetivo(0, numerosObjetivo);
+  //int numerosObjetivo[8] = {1, 2, 3, 8, 4, 7, 6, 5};
+  //Tabuleiro objetivo(4, numerosObjetivo);
 
   Arvore arvore(tabuleiro);
-  Arvore arvore2(objetivo);
+  //Arvore arvore2(objetivo);
   buscaEmLargura8Puzzle(&arvore);
 
   //realiza_busca_profundidade();

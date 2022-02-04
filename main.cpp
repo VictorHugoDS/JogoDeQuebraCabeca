@@ -16,18 +16,69 @@ void realiza_busca_profundidade();
 
 int main(int argc, char const *argv[])
 {
+  int resposta;
 
-  int numerosTabuleiro[8] = {2, 3, 1, 4, 5, 8, 7, 6};
-  Tabuleiro tabuleiro(0, numerosTabuleiro);
+  std::cout << "| ================================================== |\n";
+  std::cout << "       Solucionador do Quebra-Cabeça de 8 Peças       \n";
+  std::cout << "| ================================================== |\n";
+
+  std::cout << "\n\n";
+
+  std::cout << "Selecione o algoritmo de solução desejado:\n";
+  std::cout << "1) Busca em Profundidade\n";
+  std::cout << "2) Busca em Largura\n";
+  std::cout << "Outro) Sair";
+
+  std::cout << "\n\n";
+
+  std::cout << "Resposta: ";
+  std::cin >> resposta;
+
+  int numeros[8];
+  int vazio;
+  int contador = 0;
+  if (resposta == 2) {
+    std::cout << "Insira os valores do tabuleiro (0 representa o espaço vazio):\n";
+    
+    for (int i = 0; i < 3; i++)
+    {
+      for (int j = 0; j < 3; j++)
+      {
+        std::cout << "[" << i << "][" << j << "]: ";
+        std::cin >> resposta;
+
+        if (resposta == 0) {
+          vazio = contador;
+        } else {
+          numeros[contador] = resposta;
+          contador++;
+        }
+        
+      }
+      
+    }
+
+    Tabuleiro tabuleiro(vazio, numeros);
+    Arvore arvore(tabuleiro);
+    buscaEmLargura8Puzzle(&arvore);
+    
+  }
+  else if (resposta == 1) {
+    realiza_busca_profundidade();
+  }
+
+
+
+  /*int numerosTabuleiro[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+  Tabuleiro tabuleiro(2, numerosTabuleiro);
 
   //int numerosObjetivo[8] = {1, 2, 3, 8, 4, 7, 6, 5};
   //Tabuleiro objetivo(4, numerosObjetivo);
 
   Arvore arvore(tabuleiro);
   //Arvore arvore2(objetivo);
-  buscaEmLargura8Puzzle(&arvore);
+  buscaEmLargura8Puzzle(&arvore);*/
 
-  //realiza_busca_profundidade();
   return 0;
 }
 

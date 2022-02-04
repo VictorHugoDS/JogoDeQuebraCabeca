@@ -4,7 +4,7 @@
 
 // #include "interface_matriz.cpp"
 // #include "interface_arvore.cpp"
-// #include "largura/busca_largura.h"
+#include "largura/busca_largura.h"
 #include "interface_busca_profundidade.cpp"
 
 #include "tabuleiro.h"
@@ -16,7 +16,18 @@ void realiza_busca_profundidade();
 
 int main(int argc, char const *argv[])
 {
-  realiza_busca_profundidade();
+
+  int numerosTabuleiro[8] = {7, 2, 4, 5, 6, 8, 3, 1};
+  Tabuleiro tabuleiro(4, numerosTabuleiro);
+
+  int numerosObjetivo[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+  Tabuleiro objetivo(0, numerosObjetivo);
+
+  Arvore arvore(tabuleiro);
+  Arvore arvore2(objetivo);
+  buscaEmLargura8Puzzle(&arvore);
+
+  //realiza_busca_profundidade();
   return 0;
 }
 

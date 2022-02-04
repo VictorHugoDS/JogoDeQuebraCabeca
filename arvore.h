@@ -6,6 +6,7 @@
 class Arvore
 {
 private:
+    Arvore *pai;
     Tabuleiro raiz;
     Arvore *filho_1;
     Arvore *filho_2;
@@ -16,6 +17,7 @@ public:
     Arvore();
     ~Arvore();
 
+    Arvore* getPai();
     Tabuleiro getRaiz();
     Arvore* getFilho1();
     Arvore* getFilho2();

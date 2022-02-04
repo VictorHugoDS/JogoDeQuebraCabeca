@@ -190,7 +190,7 @@ void buscaEmLargura8Puzzle(Arvore *no)
     {
         Arvore *noAtual = nosAbertos.front();
 
-        noAtual->getRaiz().printTabuleiro();
+        //noAtual->getRaiz().printTabuleiro();
         std::cout << "========\n";
         
         if (noAtual->getRaiz().getTabuleiro() == objetivo.getTabuleiro());
@@ -200,44 +200,69 @@ void buscaEmLargura8Puzzle(Arvore *no)
         std::cout << nosFechados.size() << "\n";
         nosFechados.push(noAtual);
 
-        noAtual->adicionarFilho(noAtual->getRaiz().up());
-        noAtual->adicionarFilho(noAtual->getRaiz().down());
-        noAtual->adicionarFilho(noAtual->getRaiz().left());
-        noAtual->adicionarFilho(noAtual->getRaiz().right());
+        if (noAtual->getRaiz().calcularLinhaDoVazio() > 0) {
+            noAtual->adicionarFilho(noAtual->getRaiz().up());
+        }
 
-        if (noAtual->getFilho1()->getRaiz().getTabuleiro() == objetivo.getTabuleiro())
+        if (noAtual->getRaiz().calcularLinhaDoVazio() < 2)
+        {
+            noAtual->adicionarFilho(noAtual->getRaiz().down());
+        }
+
+        if (noAtual->getRaiz().calcularColunaDoVazio() > 0)
+        {
+            noAtual->adicionarFilho(noAtual->getRaiz().left());
+        }
+
+        if (noAtual->getRaiz().calcularColunaDoVazio() < 2)
+        {
+            noAtual->adicionarFilho(noAtual->getRaiz().right());
+        }
+
+        if ((noAtual->getFilho1() != nullptr) && (noAtual->getFilho1()->getRaiz().getTabuleiro() == objetivo.getTabuleiro()))
         {
             objetivoEncontrado = true;
             tracarCaminhoDaSolucao(solucao, noAtual->getFilho1());
         }
-        else if (noAtual->getFilho2()->getRaiz().getTabuleiro() == objetivo.getTabuleiro())
+        else if ((noAtual->getFilho2() != nullptr) && (noAtual->getFilho2()->getRaiz().getTabuleiro() == objetivo.getTabuleiro()))
         {
             objetivoEncontrado = true;
             tracarCaminhoDaSolucao(solucao, noAtual->getFilho2());
         }
-        else if (noAtual->getFilho3()->getRaiz().getTabuleiro() == objetivo.getTabuleiro())
+        else if (((noAtual->getFilho3() != nullptr)) && (noAtual->getFilho3()->getRaiz().getTabuleiro() == objetivo.getTabuleiro()))
         {
             objetivoEncontrado = true;
             tracarCaminhoDaSolucao(solucao, noAtual->getFilho3());
         }
-        else if (noAtual->getFilho4()->getRaiz().getTabuleiro() == objetivo.getTabuleiro())
+        else if ((noAtual->getFilho4() != nullptr) && (noAtual->getFilho4()->getRaiz().getTabuleiro() == objetivo.getTabuleiro()))
         {
             objetivoEncontrado = true;
             tracarCaminhoDaSolucao(solucao, noAtual->getFilho4());
         }
 
-        nosAbertos.push(noAtual->getFilho1());
-        nosAbertos.push(noAtual->getFilho2());
-        nosAbertos.push(noAtual->getFilho3());
-        nosAbertos.push(noAtual->getFilho4());
+        //nosAbertos.push(noAtual->getFilho1());
+        //nosAbertos.push(noAtual->getFilho2());
+        //nosAbertos.push(noAtual->getFilho3());
+        //nosAbertos.push(noAtual->getFilho4());
 
-        if (!estaNaFila(nosAbertos, noAtual->getFilho1()) && !estaNaFila(nosFechados, noAtual->getFilho1()))
+        if (noAtual->getFilho1() != nullptr) {
+            if (!estaNaFila(nosAbertos, noAtual->getFilho1()) && !estaNaFila(nosFechados, noAtual->getFilho1()))
             nosAbertos.push(noAtual->getFilho1());
-        if (!estaNaFila(nosAbertos, noAtual->getFilho2()) && !estaNaFila(nosFechados, noAtual->getFilho2()))
-            nosAbertos.push(noAtual->getFilho2());
-        if (!estaNaFila(nosAbertos, noAtual->getFilho3()) && !estaNaFila(nosFechados, noAtual->getFilho3()))
-            nosAbertos.push(noAtual->getFilho3());
-        if (!estaNaFila(nosAbertos, noAtual->getFilho4()) && !estaNaFila(nosFechados, noAtual->getFilho4()))
-            nosAbertos.push(noAtual->getFilho4());
+        }
+
+        if (noAtual->getFilho2() != nullptr) {
+            if (!estaNaFila(nosAbertos, noAtual->getFilho2()) && !estaNaFila(nosFechados, noAtual->getFilho2()))
+                nosAbertos.push(noAtual->getFilho2());
+        }
+
+        if (noAtual->getFilho3() != nullptr) {
+            if (!estaNaFila(nosAbertos, noAtual->getFilho3()) && !estaNaFila(nosFechados, noAtual->getFilho3()))
+                nosAbertos.push(noAtual->getFilho3());
+        }
+
+        if (noAtual->getFilho4() != nullptr) {
+            if (!estaNaFila(nosAbertos, noAtual->getFilho4()) && !estaNaFila(nosFechados, noAtual->getFilho4()))
+                nosAbertos.push(noAtual->getFilho4());
+        }
     }
 }

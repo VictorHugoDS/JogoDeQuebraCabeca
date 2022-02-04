@@ -193,7 +193,10 @@ void buscaEmLargura8Puzzle(Arvore *no)
         //noAtual->getRaiz().printTabuleiro();
         std::cout << "========\n";
         
-        if (noAtual->getRaiz().getTabuleiro() == objetivo.getTabuleiro());
+        if (noAtual->getRaiz().getTabuleiro() == objetivo.getTabuleiro()) {
+            objetivoEncontrado = true;
+            tracarCaminhoDaSolucao(solucao, noAtual);
+        }
 
         nosAbertos.pop();
         std::cout << nosAbertos.size() << "\n";

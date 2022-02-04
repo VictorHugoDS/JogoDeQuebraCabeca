@@ -5,7 +5,7 @@
 // #include "interface_matriz.cpp"
 // #include "interface_arvore.cpp"
 #include "largura/busca_largura.h"
-// #include "interface_busca_profundidade.cpp"
+#include "interface_busca_profundidade.cpp"
 
 #include "tabuleiro.h"
 #include "arvore.h"
@@ -31,17 +31,23 @@ int main(int argc, char const *argv[])
   return 0;
 }
 
-/*void realiza_busca_profundidade(){
-  printf("Digite a ordem do quebra cabeca a qual se deseja chegar: \n");
-  objmatriz matrizFinal = createMatrizAndPopulate(3,3);
-  printf("Digite a ordem inicial do quebra cabeca: \n");
+void realiza_busca_profundidade(){
+  printf("\nDigite o Start State (coloque 0 como o espaco vazio): \n");
   objmatriz matrizInicial = createMatrizAndPopulate(3,3);
+  printf("\nDigite o Goal State (coloque 0 como o espaco vazio): \n");
+  objmatriz matrizFinal = createMatrizAndPopulate(3,3);
   if(possivelChegar(matrizFinal,matrizInicial)){
+    printf("\nStart State:\n");
+    printMatriz(matrizInicial);
+    printf("\nGoal State: \n");
+    printMatriz(matrizFinal);
     int hash = calculaHashMatriz(matrizFinal);
+    printf("\nProcessando Resultado\n\n");
     buscaEmProfundidade(matrizInicial,hash);
-
+  } else {
+    printf("\nNao e possivel de um quebra-cabeca chegar ao outro");
   }
-}*/
+}
 // void buscaLargura(){
 //   int quantVertices;
 

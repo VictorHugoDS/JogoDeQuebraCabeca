@@ -95,3 +95,33 @@ bool matrizNovaNaArvore(no* nop){
   }
   return true;
 }
+
+/**
+ * @brief Explora todos os elementos da árvore recursivamente, e retorna sua quantidade
+ * 
+ * @param raiz Raiz da árvore a ser verificada
+ * @return retorna a quantidade de elementos na árvore
+**/
+int exploraArvoreRecusivo(no* raiz){
+  if(raiz->quantFilhos == 0){
+    return 1;
+  }
+  int count = 0;
+  for(int i=0; i < raiz->quantFilhos; i++){
+    if(raiz->filhos[i] != NULL){
+      count = count + exploraArvoreRecusivo(raiz->filhos[i]);
+
+    }
+  }
+  return count;
+}
+/**
+ * @brief Explora todos os elementos da árvore, e retorna sua quantidade
+ * 
+ * @param raiz Raiz da árvore a ser verificada
+ * @return retorna a quantidade de elementos na árvore
+**/
+int exploraArvore(no* raiz){
+  no* aux = raiz;
+  return exploraArvoreRecusivo(aux);
+}

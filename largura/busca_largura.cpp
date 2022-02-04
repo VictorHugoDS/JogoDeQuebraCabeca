@@ -190,7 +190,14 @@ void buscaEmLargura8Puzzle(Arvore *no)
     {
         Arvore *noAtual = nosAbertos.front();
 
+        noAtual->getRaiz().printTabuleiro();
+        std::cout << "========\n";
+        
+        if (noAtual->getRaiz().getTabuleiro() == objetivo.getTabuleiro());
+
         nosAbertos.pop();
+        std::cout << nosAbertos.size() << "\n";
+        std::cout << nosFechados.size() << "\n";
         nosFechados.push(noAtual);
 
         noAtual->adicionarFilho(noAtual->getRaiz().up());

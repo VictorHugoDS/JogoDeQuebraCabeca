@@ -8,6 +8,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#include <queue>
+#include <iostream>
+
+#include "../arvore.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -17,28 +21,28 @@ typedef struct Fila
 {
     int frente, fundo, tamanho;
     unsigned capacidade;
-    int* vetor;
+    int *vetor;
 } Fila;
 
-Fila* criarFila(unsigned capacidade)
+Fila *criarFila(unsigned capacidade)
 {
-    Fila* fila = (struct Fila*) malloc(sizeof(Fila));
-    
+    Fila *fila = (struct Fila *)malloc(sizeof(Fila));
+
     fila->capacidade = capacidade;
     fila->frente = 0;
     fila->tamanho = 0;
     fila->fundo = capacidade - 1;
-    fila->vetor = (int*) malloc(fila->capacidade * sizeof(int));
-    
+    fila->vetor = (int *)malloc(fila->capacidade * sizeof(int));
+
     return fila;
 }
 
-int estaCheio(Fila* fila)
+int estaCheio(Fila *fila)
 {
     return (fila->tamanho == fila->capacidade);
 }
 
-int estaVazio(Fila* fila)
+int estaVazio(Fila *fila)
 {
     return (fila->tamanho == 0);
 }
@@ -46,10 +50,11 @@ int estaVazio(Fila* fila)
 /**
  * Retorna 1 se conseguiu inserir. -1 Caso contrário
  */
-int insereNaFila(Fila* fila, int valor)
+int insereNaFila(Fila *fila, int valor)
 {
-    if (estaCheio(fila)) return ERRO;
-    
+    if (estaCheio(fila))
+        return ERRO;
+
     fila->fundo = (fila->fundo + 1) % fila->capacidade;
     fila->vetor[fila->fundo] = valor;
     fila->tamanho += 1;
@@ -57,10 +62,10 @@ int insereNaFila(Fila* fila, int valor)
     return TRUE;
 }
 
-
-int removeDaFila(Fila* fila)
+int removeDaFila(Fila *fila)
 {
-    if (estaVazio(fila)) return ERRO;
+    if (estaVazio(fila))
+        return ERRO;
 
     int valor = fila->vetor[fila->frente];
     fila->frente = (fila->frente + 1) % fila->capacidade;
@@ -69,21 +74,23 @@ int removeDaFila(Fila* fila)
     return valor;
 }
 
-int frente(Fila* fila)
+int frente(Fila *fila)
 {
-    if (estaVazio(fila)) return ERRO;
+    if (estaVazio(fila))
+        return ERRO;
 
     return fila->vetor[fila->frente];
 }
 
-int fundo(Fila* fila)
+int fundo(Fila *fila)
 {
-    if (estaVazio(fila)) return ERRO;
+    if (estaVazio(fila))
+        return ERRO;
 
     return fila->vetor[fila->fundo];
 }
 
-void liberarFila(Fila* fila)
+void liberarFila(Fila *fila)
 {
     for (int i = 0; i < fila->capacidade; i++)
     {
@@ -100,7 +107,7 @@ void liberarFila(Fila* fila)
  */
 void buscaEmLargura(int quantVertices, std::vector<std::vector<int>> matrizAdj, int verticeInicial)
 {
-    
+
     int visitado[quantVertices];
 
     for (int vertice = 0; vertice < quantVertices; vertice++)
@@ -108,7 +115,7 @@ void buscaEmLargura(int quantVertices, std::vector<std::vector<int>> matrizAdj, 
         visitado[vertice] = FALSE;
     }
 
-    Fila* filaDeVertices = criarFila(quantVertices);
+    Fila *filaDeVertices = criarFila(quantVertices);
 
     insereNaFila(filaDeVertices, verticeInicial);
     visitado[verticeInicial] = TRUE;
@@ -130,4 +137,100 @@ void buscaEmLargura(int quantVertices, std::vector<std::vector<int>> matrizAdj, 
     }
 
     liberarFila(filaDeVertices);
+}
+
+bool estaNaFila(std::queue<Arvore *> fila, Arvore *no)
+{
+    while (!fila.empty())
+    {
+        if (fila.front()->getRaiz().getTabuleiro() == no->getRaiz().getTabuleiro())
+        {
+            return true;
+        }
+        fila.pop();
+    }
+
+    return false;
+}
+
+void tracarCaminhoDaSolucao(std::vector<Arvore *> solucao, Arvore *no)
+{
+    Arvore *atual = no;
+    solucao.push_back(atual);
+    while (atual->getPai() != nullptr)
+    {
+        atual = atual->getPai();
+        solucao.push_back(atual);
+    }
+
+    std::cout << "Solução:\n";
+
+    for (Arvore *i : solucao)
+    {
+        i->getRaiz().printTabuleiro();
+        std::cout << "\n";
+    }
+}
+
+void buscaEmLargura8Puzzle(Arvore *no)
+{
+
+    int numerosObjetivo[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    Tabuleiro objetivo(0, numerosObjetivo);
+
+    std::vector<Arvore *> solucao;
+    std::queue<Arvore *> nosAbertos;
+    std::queue<Arvore *> nosFechados;
+
+    nosAbertos.push(no);
+
+    bool objetivoEncontrado = false;
+
+    while (nosAbertos.size() > 0 && !objetivoEncontrado)
+    {
+        Arvore *noAtual = nosAbertos.front();
+
+        nosAbertos.pop();
+        nosFechados.push(noAtual);
+
+        noAtual->adicionarFilho(noAtual->getRaiz().up());
+        noAtual->adicionarFilho(noAtual->getRaiz().down());
+        noAtual->adicionarFilho(noAtual->getRaiz().left());
+        noAtual->adicionarFilho(noAtual->getRaiz().right());
+
+        if (noAtual->getFilho1()->getRaiz().getTabuleiro() == objetivo.getTabuleiro())
+        {
+            objetivoEncontrado = true;
+            tracarCaminhoDaSolucao(solucao, noAtual->getFilho1());
+        }
+        else if (noAtual->getFilho2()->getRaiz().getTabuleiro() == objetivo.getTabuleiro())
+        {
+            objetivoEncontrado = true;
+            tracarCaminhoDaSolucao(solucao, noAtual->getFilho2());
+        }
+        else if (noAtual->getFilho3()->getRaiz().getTabuleiro() == objetivo.getTabuleiro())
+        {
+            objetivoEncontrado = true;
+            tracarCaminhoDaSolucao(solucao, noAtual->getFilho3());
+        }
+        else if (noAtual->getFilho4()->getRaiz().getTabuleiro() == objetivo.getTabuleiro())
+        {
+            objetivoEncontrado = true;
+            tracarCaminhoDaSolucao(solucao, noAtual->getFilho4());
+        }
+
+        nosAbertos.push(noAtual->getFilho1());
+        nosAbertos.push(noAtual->getFilho2());
+        nosAbertos.push(noAtual->getFilho3());
+        nosAbertos.push(noAtual->getFilho4());
+
+        if (!estaNaFila(nosAbertos, noAtual->getFilho1()) && !estaNaFila(nosFechados, noAtual->getFilho1()))
+            nosAbertos.push(noAtual->getFilho1());
+        if (!estaNaFila(nosAbertos, noAtual->getFilho2()) && !estaNaFila(nosFechados, noAtual->getFilho2()))
+            nosAbertos.push(noAtual->getFilho2());
+        if (!estaNaFila(nosAbertos, noAtual->getFilho3()) && !estaNaFila(nosFechados, noAtual->getFilho3()))
+            nosAbertos.push(noAtual->getFilho3());
+        if (!estaNaFila(nosAbertos, noAtual->getFilho4()) && !estaNaFila(nosFechados, noAtual->getFilho4()))
+            nosAbertos.push(noAtual->getFilho4());
+    }
 }

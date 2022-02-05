@@ -33,6 +33,9 @@ Se quiser omitir os avisos, remova a flag `-Wall`
 ### Depuração
 `-g`: Habilita a depuração. Incompatível com as flags de otimização.
 
+### Flags no make
+A variável CPPFLAGS contém as flags de compilação que serão usadas quando o comando `make` for invocado. Caso esteja usando o make, pode fazer as modificações diretamente no `makefile`.
+
 # Instruções
 
 Execute com: `./main` (Linux) ou `main.exe` (Windows) no terminal ou clique duas vezes no executável após a compilação.

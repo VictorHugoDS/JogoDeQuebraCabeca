@@ -10,6 +10,7 @@
 #include <vector>
 #include <queue>
 #include <iostream>
+#include <algorithm>
 
 #include "../arvore.h"
 
@@ -169,8 +170,9 @@ void tracarCaminhoDaSolucao(std::vector<Arvore *> solucao, Arvore *no, int nosFe
     std::cout << "RESOLVIDO:\n";
     std::cout << "Custo da solução: " << profundidade << "\n";
     std::cout << "Custo da busca: " << nosFechados << "\n";
-    std::cout << "Solução (Começa pelo Goal State):\n";
+    std::cout << "Solução:\n\n";
 
+    std::reverse(solucao.begin(), solucao.end());
     for (Arvore *i : solucao)
     {
         i->getRaiz().printTabuleiro();

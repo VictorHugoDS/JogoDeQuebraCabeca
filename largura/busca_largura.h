@@ -2,4 +2,4 @@
 
 #include "../arvore.h"
 
-void buscaEmLargura8Puzzle(Arvore* no);
+void buscaEmLargura8Puzzle(Arvore* no, int numeros[], int vazio);

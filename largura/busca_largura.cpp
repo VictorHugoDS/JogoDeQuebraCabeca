@@ -45,11 +45,10 @@ void tracarCaminhoDaSolucao(std::vector<Arvore *> solucao, Arvore *no, int nosFe
     }
 }
 
-void buscaEmLargura8Puzzle(Arvore *no)
+void buscaEmLargura8Puzzle(Arvore *no, int numerosObjetivo[], int posVazio)
 {
 
-    int numerosObjetivo[] = {1, 2, 3, 4, 5, 6, 7, 8};
-    Tabuleiro objetivo(0, numerosObjetivo);
+    Tabuleiro objetivo(posVazio, numerosObjetivo);
 
     std::vector<Arvore *> solucao;
     std::queue<Arvore *> nosAbertos;

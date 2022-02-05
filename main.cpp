@@ -65,10 +65,37 @@ int main(int argc, char const *argv[])
       }
       
     }
-
     Tabuleiro tabuleiro(vazio, numeros);
     Arvore arvore(tabuleiro);
-    buscaEmLargura8Puzzle(&arvore);
+
+    contador = 0;
+    std::cout << "Insira os valores do tabuleiro objetivo (Goal State):\n";
+    for (int i = 0; i < 3; i++)
+    {
+      for (int j = 0; j < 3; j++)
+      {
+        std::cout << "[" << i << "][" << j << "]: ";
+        std::cin >> resposta;
+
+        if ((resposta < 0) || (resposta > 8)) {
+          std::cout << "Erro: valor fora do intervalo";
+          return -1;
+        }
+
+        if (resposta == 0) {
+          vazio = contador;
+        } else {
+          numeros[contador] = resposta;
+          contador++;
+        }
+        
+      }
+      
+    }
+
+    
+    
+    buscaEmLargura8Puzzle(&arvore, numeros, vazio);
     
   }
   else if (resposta == 1) {

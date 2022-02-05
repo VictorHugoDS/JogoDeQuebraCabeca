@@ -153,17 +153,23 @@ bool estaNaFila(std::queue<Arvore *> fila, Arvore *no)
     return false;
 }
 
-void tracarCaminhoDaSolucao(std::vector<Arvore *> solucao, Arvore *no)
+void tracarCaminhoDaSolucao(std::vector<Arvore *> solucao, Arvore *no, int nosFechados)
 {
+    int profundidade = 0;
     Arvore *atual = no;
     solucao.push_back(atual);
     while (atual->getPai() != nullptr)
     {
         atual = atual->getPai();
+        profundidade++;
         solucao.push_back(atual);
     }
 
-    std::cout << "Solução:\n";
+    std::cout << "\n\n";
+    std::cout << "RESOLVIDO:\n";
+    std::cout << "Custo da solução: " << profundidade << "\n";
+    std::cout << "Custo da busca: " << nosFechados << "\n";
+    std::cout << "Solução (Começa pelo Goal State):\n";
 
     for (Arvore *i : solucao)
     {
@@ -195,12 +201,12 @@ void buscaEmLargura8Puzzle(Arvore *no)
         
         if (noAtual->getRaiz().getTabuleiro() == objetivo.getTabuleiro()) {
             objetivoEncontrado = true;
-            tracarCaminhoDaSolucao(solucao, noAtual);
+            tracarCaminhoDaSolucao(solucao, noAtual, nosFechados.size());
         }
 
         nosAbertos.pop();
-        std::cout << nosAbertos.size() << "\n";
-        std::cout << nosFechados.size() << "\n";
+        std::cout << "Nós Abertos : " << nosAbertos.size() << "\n";
+        std::cout << "Nós Fechados: " << nosFechados.size() << "\n";
         nosFechados.push(noAtual);
 
         if (noAtual->getRaiz().calcularLinhaDoVazio() > 0) {
@@ -225,22 +231,22 @@ void buscaEmLargura8Puzzle(Arvore *no)
         if ((noAtual->getFilho1() != nullptr) && (noAtual->getFilho1()->getRaiz().getTabuleiro() == objetivo.getTabuleiro()))
         {
             objetivoEncontrado = true;
-            tracarCaminhoDaSolucao(solucao, noAtual->getFilho1());
+            tracarCaminhoDaSolucao(solucao, noAtual->getFilho1(), nosFechados.size());
         }
         else if ((noAtual->getFilho2() != nullptr) && (noAtual->getFilho2()->getRaiz().getTabuleiro() == objetivo.getTabuleiro()))
         {
             objetivoEncontrado = true;
-            tracarCaminhoDaSolucao(solucao, noAtual->getFilho2());
+            tracarCaminhoDaSolucao(solucao, noAtual->getFilho2(), nosFechados.size());
         }
         else if (((noAtual->getFilho3() != nullptr)) && (noAtual->getFilho3()->getRaiz().getTabuleiro() == objetivo.getTabuleiro()))
         {
             objetivoEncontrado = true;
-            tracarCaminhoDaSolucao(solucao, noAtual->getFilho3());
+            tracarCaminhoDaSolucao(solucao, noAtual->getFilho3(), nosFechados.size());
         }
         else if ((noAtual->getFilho4() != nullptr) && (noAtual->getFilho4()->getRaiz().getTabuleiro() == objetivo.getTabuleiro()))
         {
             objetivoEncontrado = true;
-            tracarCaminhoDaSolucao(solucao, noAtual->getFilho4());
+            tracarCaminhoDaSolucao(solucao, noAtual->getFilho4(), nosFechados.size());
         }
 
         //nosAbertos.push(noAtual->getFilho1());
@@ -267,5 +273,9 @@ void buscaEmLargura8Puzzle(Arvore *no)
             if (!estaNaFila(nosAbertos, noAtual->getFilho4()) && !estaNaFila(nosFechados, noAtual->getFilho4()))
                 nosAbertos.push(noAtual->getFilho4());
         }
+    }
+
+    if (!objetivoEncontrado) {
+        std::cout << "Não foi possível encontrar a solução!";
     }
 }

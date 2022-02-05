@@ -1,4 +1,4 @@
-# Jogo de Quebra-cabeças de 8 Peças
+# Jogo do Quebra-cabeças de 8 Peças
 
 Alunos: Henrique de Oliveira Peixoto e Victor Hugo Duarte da Silva
 

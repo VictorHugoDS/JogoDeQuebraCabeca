@@ -50,6 +50,11 @@ int main(int argc, char const *argv[])
         std::cout << "[" << i << "][" << j << "]: ";
         std::cin >> resposta;
 
+        if ((resposta < 0) || (resposta > 8)) {
+          std::cout << "Erro: valor fora do intervalo";
+          return -1;
+        }
+
         if (resposta == 0) {
           vazio = contador;
         } else {

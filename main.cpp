@@ -22,7 +22,9 @@ int main(int argc, char const *argv[])
   std::cout << "       Solucionador do Quebra-Cabeça de 8 Peças       \n";
   std::cout << "| ================================================== |\n";
 
-  std::cout << "\n\n";
+  std::cout << "\n";
+  std::cout << "Link do Github: https://github.com/VictorHugoDS/JogoDeQuebraCabeca\n";
+  std::cout << "\n";
 
   std::cout << "Selecione o algoritmo de solução desejado:\n";
   std::cout << "1) Busca em Profundidade\n";
@@ -39,6 +41,7 @@ int main(int argc, char const *argv[])
   int contador = 0;
   if (resposta == 2) {
     std::cout << "Insira os valores do tabuleiro (0 representa o espaço vazio):\n";
+    std::cout << "Os valores devem estar entre 0 e 8.\n";
     
     for (int i = 0; i < 3; i++)
     {
